@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <group android:checkableBehavior="single">
+
+        <item
+            android:id="@+id/nav_connect"
+            android:icon="@drawable/usericon_32"
+            android:title="连接管理" />
+
+        <item
+            android:id="@+id/nav_speedtest"
+            android:icon="@drawable/usericon_32"
+            android:title="SpeedTest" />
+
+
+    </group>
+
+</menu>
