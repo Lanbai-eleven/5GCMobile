@@ -13,7 +13,11 @@
             android:icon="@drawable/usericon_32"
             android:title="SpeedTest" />
 
-
+        <item
+            android:id="@+id/nav_transphoto"
+            android:icon="@drawable/usericon_32"
+            android:title="TransPhoto" />
+        
     </group>
 
 </menu>

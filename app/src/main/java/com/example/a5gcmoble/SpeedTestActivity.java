@@ -4,6 +4,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -12,6 +13,7 @@ import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -23,7 +25,7 @@ import okhttp3.Request;
 import okhttp3.Response;
 
 public class SpeedTestActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
+    private int backButtonCount = 0;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -70,14 +72,20 @@ public class SpeedTestActivity extends AppCompatActivity implements NavigationVi
 
         switch (item.getItemId()){
             case R.id.nav_connect:
-                Intent intent = new Intent(SpeedTestActivity.this, MainActivity.class);
-                startActivity(intent);
+                Intent mainAct = new Intent(SpeedTestActivity.this, MainActivity.class);
+                mainAct.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(mainAct);
                 break;
             case R.id.nav_speedtest:
                 Intent speedTest = new Intent(SpeedTestActivity.this, SpeedTestActivity.class);
+                speedTest.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(speedTest);
                 break;
-
+            case R.id.nav_transphoto:
+                Intent transPhoto = new Intent(SpeedTestActivity.this, TransPhoto.class);
+                transPhoto.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(transPhoto);
+                break;
         }
 
         return true;
@@ -116,5 +124,20 @@ public class SpeedTestActivity extends AppCompatActivity implements NavigationVi
                     e.printStackTrace();
                 }
         }).start();
+    }
+
+    private static final int BACK_PRESS_DELAY = 2000; // 两次返回按钮的时间间隔
+    private long backPressedTime; // 记录上一次按下返回按钮的时间
+
+    @Override
+    public void onBackPressed() {
+        if (backPressedTime + BACK_PRESS_DELAY > System.currentTimeMillis()) {
+            super.onBackPressed();
+            finishAffinity(); // 关闭所有Activity并退出应用程序
+            return;
+        } else {
+            Toast.makeText(this, "再按一次返回键退出", Toast.LENGTH_SHORT).show();
+        }
+        backPressedTime = System.currentTimeMillis();
     }
 }

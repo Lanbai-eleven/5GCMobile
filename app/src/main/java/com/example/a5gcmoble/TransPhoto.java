@@ -5,7 +5,6 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 
 import android.content.Intent;
@@ -15,9 +14,7 @@ import android.widget.Toast;
 
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
-    private int backButtonCount = 0;
-
+public class TransPhoto extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -58,17 +55,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         switch (item.getItemId()){
             case R.id.nav_connect:
-                Intent mainact = new Intent(MainActivity.this, MainActivity.class);
-                mainact.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
-                startActivity(mainact);
+                Intent mainAct = new Intent(TransPhoto.this, MainActivity.class);
+                mainAct.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
+                startActivity(mainAct);
                 break;
             case R.id.nav_speedtest:
-                Intent speedTest = new Intent(MainActivity.this, SpeedTestActivity.class);
+                Intent speedTest = new Intent(TransPhoto.this, SpeedTestActivity.class);
                 speedTest.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(speedTest);
                 break;
             case R.id.nav_transphoto:
-                Intent transPhoto = new Intent(MainActivity.this, TransPhoto.class);
+                Intent transPhoto = new Intent(TransPhoto.this, TransPhoto.class);
                 transPhoto.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_SINGLE_TOP);
                 startActivity(transPhoto);
                 break;
@@ -76,6 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         return true;
     }
+
 
     private static final int BACK_PRESS_DELAY = 2000; // 两次返回按钮的时间间隔
     private long backPressedTime; // 记录上一次按下返回按钮的时间
